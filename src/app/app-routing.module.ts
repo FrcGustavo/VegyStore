@@ -20,15 +20,19 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        canActivate: [AdminGuard],
+        //canActivate: [AdminGuard],
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'products',
-        canActivate: [AdminGuard],
+        //canActivate: [AdminGuard],
         loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
       },
-      { path: 'contact', canActivate: [AdminGuard], component: ContactComponent },
+      {
+        path: 'contact',
+        //canActivate: [AdminGuard],
+        component: ContactComponent
+      },
       { path: 'demo', component: DemoComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
