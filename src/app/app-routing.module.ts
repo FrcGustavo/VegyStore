@@ -20,23 +20,24 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        //canActivate: [AdminGuard],
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'products',
-        //canActivate: [AdminGuard],
         loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
       },
       {
         path: 'contact',
-        //canActivate: [AdminGuard],
         component: ContactComponent
       },
       { path: 'demo', component: DemoComponent },
-      { path: '**', component: PageNotFoundComponent }
     ]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
