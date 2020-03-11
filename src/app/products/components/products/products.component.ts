@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../product.model';
+import { ProductsService } from '../../../core/services/products/products.service';
 
 @Component({
   selector: 'app-products',
@@ -7,36 +8,24 @@ import { Product } from '../../../product.model';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = [
-    {
-      id: '1',
-      image: 'assets/images/brote.jpg',
-      title: 'Brote de albahcar',
-      price: 15,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: '2',
-      image: 'assets/images/brote.jpg',
-      title: 'Brote de albahcar',
-      price: 15,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: '3',
-      image: 'assets/images/brote.jpg',
-      title: 'Brote de albahcar',
-      price: 15,
-      description: 'bla bla bla bla bla'
-    }
-  ];
+  products: Product[];
 
-  constructor() { }
+  constructor(
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit(): void {
+    this.fetchProducts();
   }
 
   handleClickProduct(id: number) {
     console.log('ProductId', id);
+  }
+
+  fetchProducts() {
+    this.productsService.getAllProducts().subscribe(products => {
+      this.products = products;
+      console.log(this.products);
+    });
   }
 }
